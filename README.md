@@ -2,7 +2,7 @@
 
 A sleek, transient and smartly-spacious prompt for zsh.
 
-main image here
+![main prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-main.png?raw=true)
 
 - Sleek design with minimal indicators for status and working directory.
 - Shortened (but distinct) paths in the right prompt.
@@ -18,7 +18,7 @@ Clone this repository and add `source /path/to/s1ck3r.zsh` to your `.zshrc`.
 
 The current prompt has higher visibility by being larger, adding an extra newline and colors:
 
-image
+![transient prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-large.png?raw=true)
 
 If the prompt is on the first line of the terminal, the extra newline is not displayed.
 If you want to retain this behaviour even after using the `clear` command, add the following alias to your `.zshrc`:
@@ -29,7 +29,10 @@ If you want to retain this behaviour even after using the `clear` command, add t
 
 s1ck3r has left and right prompt components.
 
-ìmage
+![vi normal mode prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-vi.png?raw=true)
+![root prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-root.png?raw=true)
+![error prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-err.png?raw=true)
+![background jobs prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-jobs.png?raw=true)
 
 The left prompt changes color and the symbol based on various conditions.
 

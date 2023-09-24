@@ -21,35 +21,37 @@ The current prompt has higher visibility by being larger, adding an extra newlin
 ![transient prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-large.png?raw=true)
 
 If the prompt is on the first line of the terminal, the extra newline is not displayed.
-If you want to retain this behaviour even after using the `clear` command, add the following alias to your `.zshrc`:
 
-`alias clear="unset S1CK3R_SPACIOUS_PROMPT && clear"`
+To reset the prompt after using `clear`, add the following alias to your `.zshrc`:
+```sh
+alias clear="unset S1CK3R_SPACIOUS_PROMPT && clear"
+```
 
 ### Indicators
 
 s1ck3r has left and right prompt components.
-
-![vi normal mode prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-vi.png?raw=true)
-![root prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-root.png?raw=true)
-![error prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-err.png?raw=true)
-![background jobs prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-jobs.png?raw=true)
-
-The left prompt changes color and the symbol based on various conditions.
+The left prompt changes color and symbol based on various conditions:
 
 1. Uses a different symbol if in NORMAL mode (VI bindings).
+![vi normal mode prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-vi.png?raw=true)
 2. Uses a different symbol if elevated permissions (and NORMAL mode is not active).
+![root prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-root.png?raw=true)
 3. Uses a different color if previous command resulted in an error.
+![error prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-err.png?raw=true)
 4. Uses different color if background jobs exists (and previous command was not an error).
+![background jobs prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-jobs.png?raw=true)
 
 The right prompt shows the current working directory, as well as an indicator for the current branch name and status `*`.
 If the previous command returned with a non-zero result, the value of '$?' is shown inline as well.
-Path names are abbreviated, as follows.
-The last element is always shown in full.
-The first element is abbreviated to `~` (if under current users home directory) or `~username` if in usernames home directory (while not being username yourself) - otherwise, it uses `/`.
-Any other directory in between is abbreviated to its unique prefix in its parent directory (i.e., what you would have to type for tab completion to autosuggest the full directory name).
+
+Path names are abbreviated, as follows:
+- The last element is always shown in full.
+- The first element is abbreviated to `~` (if under `$HOME`) or `~username` (if in other users home directory).
+- Any other directory in between is abbreviated to its *unique* prefix in its parent directory (i.e., what you would have to type for tab completion to autosuggest the full directory name).
 
 Note, that the prompt does not indicate the current user and host names.
 The author believes that this information should be displayed by other means, e.g., through tmux -- once per screen, not once per terminal line.
+See below for how to add this information using any of the s1ck3r custom prefixes.
 
 # Customization
 
@@ -63,9 +65,9 @@ The author believes that this information should be displayed by other means, e.
 
 ### Updating Variables
 
-More generally, s1ck3r can be customized by simply initializing any of the following variables with custom values *before* sourcing `s1cker.zsh`.
-There are three sections: First, the prompt symbols can be changed. This is required if your terminal/font/etc. does not support the default symbols used, or if you want to use something different.
-
+More generally, s1ck3r can be customized by simply initializing any of the following variables with custom values *before* sourcing `s1ck3r.zsh`.
+There are three sections: First, the prompt symbols can be changed.
+This is required if your setup does not support the default symbols used, or if you want to use something else.
 Below is an ASCII only example configuration.
 
 ```sh
@@ -81,8 +83,7 @@ local s1ck3r_dir_sep="${s1ck3r_dir_sep:-/}"
 local s1ck3r_dir_home="${s1ck3r_dir_home:-~}"
 ```
 
-Secondly, the easy mode color configuration can be used to change the four colors for "highlights" (default green), "dim" elements (default light black), "errors" (default red) as well as the normal foreground color, e.g., used for paths (default foreground).
-See below for the default configuration.
+Secondly, the easy mode color configuration can be used to change the four colors for "highlights" (default green), "dim" elements (default light black), "errors" (default red) as well as the standard foreground color (default foreground).
 
 ```sh
 # Easy mode:
@@ -98,7 +99,7 @@ It is also possible to change *how* these four colors are used, by changing any 
 # Full custom mode:
 local s1ck3r_c_git_branch="$s1ck3r_color_dim"
 local s1ck3r_c_git_dirty="$s1ck3r_color_highlight"
-local s1ck3r_c_token_inactive="$s1ck3r_color_dim"
+local s1ck3r_c_token="$s1ck3r_color_dim"
 local s1ck3r_c_token_active="$s1ck3r_color_highlight"
 local s1ck3r_c_token_t="$s1ck3r_color_dim"
 local s1ck3r_c_dir="$s1ck3r_color_fg"
@@ -108,7 +109,7 @@ local s1ck3r_c_dir_last="$s1ck3r_color_fg"
 local s1ck3r_c_dir_t="$s1ck3r_color_dim"
 ```
 
-Finally, s1ck3r supports a custom prefix. You can use this, for example, to add username and hostname:
+Finally, s1ck3r supports custom prefixes. You may use them, for example, to add username and hostname:
 
 ```sh
 local s1ck3r_prompt_prefix="%n%F{green}@%f%M " # or

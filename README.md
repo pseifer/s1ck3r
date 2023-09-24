@@ -116,3 +116,5 @@ local s1ck3r_prompt_prefix="%n%F{green}@%f%M " # or
 #local s1ck3r_prompt_infix=" %n%F{green}@%f%M " #or
 #local s1ck3r_prompt_suffix=" %n%F{green}@%f%M"
 ```
+
+The examples in this repository use the [Dracula](https://draculatheme.com/) theme (where 'light black' - 008 - is set to the 'comment' color) as well as the [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) plugin.

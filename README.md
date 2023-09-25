@@ -1,6 +1,6 @@
 # `> s1ck3r`
 
-A sleek, transient and smartly-spacious prompt for zsh.
+A sleek, transient and space-efficient prompt for zsh.
 
 ![main prompt](https://github.com/pseifer/s1ck3r/blob/main/images/s1ck3r-main.png?raw=true)
 

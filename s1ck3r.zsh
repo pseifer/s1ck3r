@@ -51,6 +51,8 @@ local s1ck3r_c_dir_sep="${s1ck3r_c_dir_sep:-$s1ck3r_color_dim}"
 local s1ck3r_c_dir_home="${s1ck3r_c_dir_home:-$s1ck3r_color_highlight}"
 local s1ck3r_c_dir_last="${s1ck3r_c_dir_last:-$s1ck3r_color_fg}"
 local s1ck3r_c_dir_t="${s1ck3r_c_dir_t:-$s1ck3r_color_dim}"
+local s1ck3r_c_error="${s1ck3r_c_error:-$s1ck3r_color_error}"
+local s1ck3r_c_fix="${s1ck3r_c_fix:-$s1ck3r_color_fg}"
 
 
 
@@ -186,10 +188,10 @@ _s1ck3r_prompt()
     esac
     
     # Set prompt prefix (if any).
-    echo -n "%F{${s1ck3r_color_fg}}${s1ck3r_prompt_prefix}%f"
+    echo -n "%F{${s1ck3r_c_fix}}${s1ck3r_prompt_prefix}%f"
 
     # Set the correct color based on current errors > background jobs > normal color.
-    echo -n "%(1j.%F{${s1ck3r_c_token_active}}.%F{${s1ck3r_c_token}})%(?..%F{${s1ck3r_color_error}})"
+    echo -n "%(1j.%F{${s1ck3r_c_token_active}}.%F{${s1ck3r_c_token}})%(?..%F{${s1ck3r_c_error}})"
 
     # Output the correct token.
     echo -n "${token}%f "
@@ -198,13 +200,13 @@ _s1ck3r_prompt()
 # Set static prompts.
 
 # rprompt: infix
-local s1ck3r_rprompt='%F{${s1ck3r_color_fg}}${s1ck3r_prompt_infix}%f'
+local s1ck3r_rprompt='%F{${s1ck3r_c_fix}}${s1ck3r_prompt_infix}%f'
 # rprompt: error
-s1ck3r_rprompt+='%(?..%F{${s1ck3r_color_error}}%?%f )'
+s1ck3r_rprompt+='%(?..%F{${s1ck3r_c_error}}%?%f )'
 # rprompt: path + git info
 s1ck3r_rprompt+='$(_s1ck3r_short_path 1)$(_s1ck3r_git_branch)'
 # rprompt: suffix
-s1ck3r_rprompt+='%F{${s1ck3r_color_fg}}${s1ck3r_prompt_suffix}%f'
+s1ck3r_rprompt+='%F{${s1ck3r_c_fix}}${s1ck3r_prompt_suffix}%f'
 
 local s1ck3r_prompt2="%F{${s1ck3r_c_token_t}}${s1ck3r_prompt_token_continue}%f "
 local s1ck3r_prompt_transient="%F{${s1ck3r_c_token_t}}${s1ck3r_prompt_token_t}%f "

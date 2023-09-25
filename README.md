@@ -14,7 +14,7 @@ Clone this repository and add `source /path/to/s1ck3r.zsh` to your `.zshrc`.
 
 # Features
 
-### Sleek, transient and space-efficient prompt.
+### Transient and space-efficient
 
 The current prompt has higher visibility by being larger, adding an extra newline and colors:
 
@@ -27,7 +27,7 @@ To reset the prompt after using `clear`, add the following alias to your `.zshrc
 alias clear="unset S1CK3R_SPACIOUS_PROMPT && clear"
 ```
 
-### Indicators
+### Minimal indicators
 
 s1ck3r has left and right prompt components.
 The left prompt changes color and symbol based on various conditions:
@@ -63,7 +63,7 @@ See below for how to add this information using any of the s1ck3r custom prefixe
 - Are parts of the prompt invisible?
     - Try setting `s1ck3r_color_dim` to something else than `bright black`.
 
-### Updating Variables
+### Customizing Variables
 
 More generally, s1ck3r can be customized by simply initializing any of the following variables with custom values *before* sourcing `s1ck3r.zsh`.
 There are three sections: First, the prompt symbols can be changed.
@@ -93,7 +93,9 @@ local s1ck3r_color_error="1"
 local s1ck3r_color_fg="foreground"
 ```
 
-It is also possible to change *how* these four colors are used, by changing any of the variables given below. It should be rather obvious what these colors are used for; the suffix `_t` means transient and is used for anything related to the non-active prompt.
+It is also possible to change *how* these four colors are used, by changing any of the variables given below.
+It should be rather obvious what these colors are used for; the suffix `_t` means "transient" and is used for anything related to the non-active prompt.
+(Of course, these variables can be set to *any* color name, id or hex triplet supported by your setup).
 
 ```sh
 # Full custom mode:
@@ -107,6 +109,8 @@ local s1ck3r_c_dir_sep="$s1ck3r_color_dim"
 local s1ck3r_c_dir_home="$s1ck3r_color_highlight"
 local s1ck3r_c_dir_last="$s1ck3r_color_fg"
 local s1ck3r_c_dir_t="$s1ck3r_color_dim"
+local s1ck3r_c_error="$s1ck3r_color_error"
+local s1ck3r_c_fix="$s1ck3r_color_fg"
 ```
 
 Finally, s1ck3r supports custom prefixes. You may use them, for example, to add username and hostname:

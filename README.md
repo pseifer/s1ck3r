@@ -72,25 +72,25 @@ Below is an ASCII only example configuration.
 
 ```sh
 # Symbols:
-local s1ck3r_prompt_token=">"
-local s1ck3r_prompt_token_vi="-"
-local s1ck3r_prompt_token_root="#"
-local s1ck3r_prompt_token_t="-"
-local s1ck3r_prompt_token_continue="  >"
+local s1ck3r_prompt_token=">"                           # basic prompt
+local s1ck3r_prompt_token_vi="-"                        # prompt in NORMAL mode
+local s1ck3r_prompt_token_root="#"                      # elevated prompt (root)
+local s1ck3r_prompt_token_t="-"                         # transient prompt
+local s1ck3r_prompt_token_continue="  >"                # continuation (i.e., multiline)
 
 # Symbols (directories):
-local s1ck3r_dir_sep="${s1ck3r_dir_sep:-/}"
-local s1ck3r_dir_home="${s1ck3r_dir_home:-~}"
+local s1ck3r_dir_sep="${s1ck3r_dir_sep:-/}"             # separator in path
+local s1ck3r_dir_home="${s1ck3r_dir_home:-~}"           # abbreviation for home
 ```
 
 Secondly, the easy mode color configuration can be used to change the four colors for "highlights" (default green), "dim" elements (default light black), "errors" (default red) as well as the standard foreground color (default foreground).
 
 ```sh
 # Easy mode:
-local s1ck3r_color_highlight="2"
-local s1ck3r_color_dim="8"
-local s1ck3r_color_error="1"
-local s1ck3r_color_fg="foreground"
+local s1ck3r_color_highlight="2"                        # highlights in path, prompt with jobs
+local s1ck3r_color_dim="8"                              # prompt, transient, branch, separators
+local s1ck3r_color_error="1"                            # prompt with errors, return value
+local s1ck3r_color_fg="foreground"                      # path elements in right prompt
 ```
 
 It is also possible to change *how* these four colors are used, by changing any of the variables given below.
@@ -99,26 +99,26 @@ It should be rather obvious what these colors are used for; the suffix `_t` mean
 
 ```sh
 # Full custom mode:
-local s1ck3r_c_git_branch="$s1ck3r_color_dim"
-local s1ck3r_c_git_dirty="$s1ck3r_color_highlight"
-local s1ck3r_c_token="$s1ck3r_color_dim"
-local s1ck3r_c_token_active="$s1ck3r_color_highlight"
-local s1ck3r_c_token_t="$s1ck3r_color_dim"
-local s1ck3r_c_dir="$s1ck3r_color_fg"
-local s1ck3r_c_dir_sep="$s1ck3r_color_dim"
-local s1ck3r_c_dir_home="$s1ck3r_color_highlight"
-local s1ck3r_c_dir_last="$s1ck3r_color_fg"
-local s1ck3r_c_dir_t="$s1ck3r_color_dim"
-local s1ck3r_c_error="$s1ck3r_color_error"
-local s1ck3r_c_fix="$s1ck3r_color_fg"
+local s1ck3r_c_git_branch="$s1ck3r_color_dim"           # git branch name
+local s1ck3r_c_git_dirty="$s1ck3r_color_highlight"      # star (if branch is dirty)
+local s1ck3r_c_token="$s1ck3r_color_dim"                # standard prompt
+local s1ck3r_c_token_active="$s1ck3r_color_highlight"   # prompt with active jobs
+local s1ck3r_c_token_t="$s1ck3r_color_dim"              # transient prompt
+local s1ck3r_c_dir="$s1ck3r_color_fg"                   # directory names in path
+local s1ck3r_c_dir_sep="$s1ck3r_color_dim"              # separator in path
+local s1ck3r_c_dir_home="$s1ck3r_color_highlight"       # shorthand for home (~)
+local s1ck3r_c_dir_last="$s1ck3r_color_fg"              # last element of path
+local s1ck3r_c_dir_t="$s1ck3r_color_dim"                # transient path
+local s1ck3r_c_error="$s1ck3r_color_error"              # error prompt and return value
+local s1ck3r_c_fix="$s1ck3r_color_fg"                   # color for custom pre/in/suffix
 ```
 
 Finally, s1ck3r supports custom prefixes. You may use them, for example, to add username and hostname:
 
 ```sh
-local s1ck3r_prompt_prefix="%n%F{green}@%f%M " # or
-#local s1ck3r_prompt_infix=" %n%F{green}@%f%M " #or
-#local s1ck3r_prompt_suffix=" %n%F{green}@%f%M"
+local s1ck3r_prompt_prefix="%n%F{green}@%f%M " # or     # Left prompt, left of >
+#local s1ck3r_prompt_infix=" %n%F{green}@%f%M " #or     # Right prompt, left of path
+#local s1ck3r_prompt_suffix=" %n%F{green}@%f%M"         # Right prompt, right of path
 ```
 
 The examples in this repository use the [Dracula](https://draculatheme.com/) theme (where 'light black' - 008 - is set to the 'comment' color) as well as the [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) plugin.

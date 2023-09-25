@@ -99,18 +99,18 @@ It should be rather obvious what these colors are used for; the suffix `_t` mean
 
 ```sh
 # Full custom mode:
-local s1ck3r_c_git_branch="$s1ck3r_color_dim"
-local s1ck3r_c_git_dirty="$s1ck3r_color_highlight"
-local s1ck3r_c_token="$s1ck3r_color_dim"
-local s1ck3r_c_token_active="$s1ck3r_color_highlight"
-local s1ck3r_c_token_t="$s1ck3r_color_dim"
-local s1ck3r_c_dir="$s1ck3r_color_fg"
-local s1ck3r_c_dir_sep="$s1ck3r_color_dim"
-local s1ck3r_c_dir_home="$s1ck3r_color_highlight"
-local s1ck3r_c_dir_last="$s1ck3r_color_fg"
-local s1ck3r_c_dir_t="$s1ck3r_color_dim"
-local s1ck3r_c_error="$s1ck3r_color_error"
-local s1ck3r_c_fix="$s1ck3r_color_fg"
+local s1ck3r_c_git_branch="$s1ck3r_color_dim"           # git branch name
+local s1ck3r_c_git_dirty="$s1ck3r_color_highlight"      # star (if branch is dirty)
+local s1ck3r_c_token="$s1ck3r_color_dim"                # standard prompt
+local s1ck3r_c_token_active="$s1ck3r_color_highlight"   # prompt with active jobs
+local s1ck3r_c_token_t="$s1ck3r_color_dim"              # transient prompt
+local s1ck3r_c_dir="$s1ck3r_color_fg"                   # directory names in path
+local s1ck3r_c_dir_sep="$s1ck3r_color_dim"              # separator in path
+local s1ck3r_c_dir_home="$s1ck3r_color_highlight"       # shorthand for home (~)
+local s1ck3r_c_dir_last="$s1ck3r_color_fg"              # last element of path
+local s1ck3r_c_dir_t="$s1ck3r_color_dim"                # transient path
+local s1ck3r_c_error="$s1ck3r_color_error"              # error prompt and return value
+local s1ck3r_c_fix="$s1ck3r_color_fg"                   # color for custom pre/in/suffix
 ```
 
 Finally, s1ck3r supports custom prefixes. You may use them, for example, to add username and hostname:

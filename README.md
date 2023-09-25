@@ -88,7 +88,7 @@ Secondly, the easy mode color configuration can be used to change the four color
 ```sh
 # Easy mode:
 local s1ck3r_color_highlight="2"                        # highlights in path, prompt with jobs
-local s1ck3r_color_dim="8"                              # prompt, transient things, branch, separators
+local s1ck3r_color_dim="8"                              # prompt, transient, branch, separators
 local s1ck3r_color_error="1"                            # prompt with errors, return value
 local s1ck3r_color_fg="foreground"                      # path elements in right prompt
 ```

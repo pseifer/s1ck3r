@@ -80,12 +80,19 @@ function _s1ck3r_short_path
             else
                 cur_short_path="${s1ck3r_dir_home}"
             fi
-        else
+        elif [[ -n "${paths[2]}" ]]; then
             # Other user home directory.
             if [[ "${colorize}" -eq 1 ]]; then
-                cur_short_path="%F{${s1ck3r_c_dir_home}}${s1ck3r_dir_home}%fF{${s1ck3r_c_dir}}${USER}%f"
+                cur_short_path="%F{${s1ck3r_c_dir_home}}${s1ck3r_dir_home}%f%F{${s1ck3r_c_dir}}${USER}%f"
             else
                 cur_short_path="${s1ck3r_dir_home}${USER}"
+            fi
+        else
+            # *the* home directory.
+            if [[ "${colorize}" -eq 1 ]]; then
+                cur_short_path="%F{${s1ck3r_c_dir}}/home%f"
+            else
+                cur_short_path="/home"
             fi
         fi
         # First two now already processed.

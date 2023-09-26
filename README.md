@@ -113,12 +113,33 @@ local s1ck3r_c_error="$s1ck3r_color_error"              # error prompt and retur
 local s1ck3r_c_fix="$s1ck3r_color_fg"                   # color for custom pre/in/suffix
 ```
 
-Finally, s1ck3r supports custom prefixes. You may use them, for example, to add username and hostname:
+Finally, s1ck3r supports custom prefix functions. You may use them, for example, to add username and hostname to the left of the prompt token:
 
 ```sh
-local s1ck3r_prompt_prefix="%n%F{green}@%f%M " # or     # Left prompt, left of >
-#local s1ck3r_prompt_infix=" %n%F{green}@%f%M " #or     # Right prompt, left of path
-#local s1ck3r_prompt_suffix=" %n%F{green}@%f%M"         # Right prompt, right of path
+s1ck3r_prompt_prefix ()
+{ 
+    echo "%n%F{$s1ck3r_color_highlight}@%f%M "
+}
+# or
+# function s1ck3r_prompt_infix { ... }
+# or
+# function s1ck3r_prompt_suffix { ... }
 ```
 
-The examples in this repository use the [Dracula](https://draculatheme.com/) theme (where 'light black' - 008 - is set to the 'comment' color) as well as the [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) plugin.
+Here is another example that I use to add the current virtual environment (parent directory) to the right-hand side of the right prompt;
+this is not included in s1ck3r by default, since virtual environment setup is somewhat user and use-case dependent.
+
+```sh
+# Function for virtual environment (parent dir).
+s1ck3r_prompt_suffix()
+{
+    if [[ -n "$VIRTUAL_ENV" ]] ; then
+        echo -n " %F{$s1ck3r_color_dim}(%f"
+        echo -n "%F{$s1ck3r_color_highlight}$(basename $(dirname "$VIRTUAL_ENV"))%f"
+        echo -n "%F{$s1ck3r_color_dim})%f"
+    fi
+}
+```
+
+The example images in this repository use the [Dracula](https://draculatheme.com/) color theme (where 'light black' - 008 - is set to the 'comment' color) as well as the [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) plugin.
+

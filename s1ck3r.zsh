@@ -26,10 +26,6 @@ local s1ck3r_prompt_token_root="${s1ck3r_prompt_token_root:- }"
 local s1ck3r_prompt_token_t="${s1ck3r_prompt_token_t:-}"
 local s1ck3r_prompt_token_continue="${s1ck3r_prompt_token_continue:-  󱞩}"
 
-local s1ck3r_prompt_prefix="${s1ck3r_prompt_prefix:-}"
-local s1ck3r_prompt_infix="${s1ck3r_prompt_infix:-}"
-local s1ck3r_prompt_suffix="${s1ck3r_prompt_suffix:-}"
-
 # Symbols (directories):
 local s1ck3r_dir_sep="${s1ck3r_dir_sep:-/}"
 local s1ck3r_dir_home="${s1ck3r_dir_home:-~}"
@@ -55,11 +51,23 @@ local s1ck3r_c_error="${s1ck3r_c_error:-$s1ck3r_color_error}"
 local s1ck3r_c_fix="${s1ck3r_c_fix:-$s1ck3r_color_fg}"
 
 
-
 # Here be dragons.
 
 # Enable substitutions in the prompt.
 setopt PROMPT_SUBST
+
+# Provide noop definitions, if no user defined prefix/infix/suffix exists.
+if type 's1ck3r_prompt_prefix' 2>/dev/null | grep -vq 'function'; then
+    function s1ck3r_prompt_prefix { }
+fi
+
+if type 's1ck3r_prompt_infix' 2>/dev/null | grep -vq 'function'; then
+    function s1ck3r_prompt_infix { }
+fi
+
+if type 's1ck3r_prompt_suffix' 2>/dev/null | grep -vq 'function'; then
+    function s1ck3r_prompt_suffix { }
+fi
 
 # A function for printing shortended directories.
 # Adapted for s1ck3r from https://stackoverflow.com/a/45336078
@@ -150,7 +158,7 @@ function _s1ck3r_short_path
     fi
 }
 
-# Functions for git status.
+# Function for git status.
 _s1ck3r_git_branch()
 {
     local s1ck3r_git_branch
@@ -195,7 +203,7 @@ _s1ck3r_prompt()
     esac
     
     # Set prompt prefix (if any).
-    echo -n "%F{${s1ck3r_c_fix}}${s1ck3r_prompt_prefix}%f"
+    echo -n '$(s1ck3r_prompt_prefix)'
 
     # Set the correct color based on current errors > background jobs > normal color.
     echo -n "%(1j.%F{${s1ck3r_c_token_active}}.%F{${s1ck3r_c_token}})%(?..%F{${s1ck3r_c_error}})"
@@ -207,13 +215,13 @@ _s1ck3r_prompt()
 # Set static prompts.
 
 # rprompt: infix
-local s1ck3r_rprompt='%F{${s1ck3r_c_fix}}${s1ck3r_prompt_infix}%f'
+local s1ck3r_rprompt='$(s1ck3r_prompt_infix)'
 # rprompt: error
 s1ck3r_rprompt+='%(?..%F{${s1ck3r_c_error}}%?%f )'
 # rprompt: path + git info
 s1ck3r_rprompt+='$(_s1ck3r_short_path 1)$(_s1ck3r_git_branch)'
 # rprompt: suffix
-s1ck3r_rprompt+='%F{${s1ck3r_c_fix}}${s1ck3r_prompt_suffix}%f'
+s1ck3r_rprompt+='$(s1ck3r_prompt_suffix)'
 
 local s1ck3r_prompt2="%F{${s1ck3r_c_token_t}}${s1ck3r_prompt_token_continue}%f "
 local s1ck3r_prompt_transient="%F{${s1ck3r_c_token_t}}${s1ck3r_prompt_token_t}%f "

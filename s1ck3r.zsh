@@ -1,5 +1,5 @@
 #!/bin/zsh
-# s1ck3r - A sleek, transient and smartly-spacious prompt for zsh.
+# s1ck3r - A sleek, transient and space-efficient prompt for zsh.
 #             _____ __  _____  _   __ ___________ 
 #            /  ___/  |/  __ \| | / /|____ | ___ \
 #            \ `--.`| || /  \/| |/ /     / / |_/ /
@@ -33,6 +33,7 @@ local s1ck3r_dir_home="${s1ck3r_dir_home:-~}"
 # Colors: Easy mode:
 local s1ck3r_color_error="${s1ck3r_color_error:-1}"
 local s1ck3r_color_highlight="${s1ck3r_color_highlight:-2}"
+local s1ck3r_color_alternative="${s1ck3r_color_alternative:-4}"
 local s1ck3r_color_dim="${s1ck3r_color_dim:-8}"
 local s1ck3r_color_fg="${s1ck3r_color_fg:-foreground}"
 
@@ -40,7 +41,8 @@ local s1ck3r_color_fg="${s1ck3r_color_fg:-foreground}"
 local s1ck3r_c_git_branch="${s1ck3r_c_git_branch:-$s1ck3r_color_dim}"
 local s1ck3r_c_git_dirty="${s1ck3r_c_git_dirty:-$s1ck3r_color_highlight}"
 local s1ck3r_c_token="${s1ck3r_c_token:-$s1ck3r_color_dim}"
-local s1ck3r_c_token_active="${s1ck3r_c_token_active:-$s1ck3r_color_highlight}"
+local s1ck3r_c_token_jobs="${s1ck3r_c_token_jobs:-$s1ck3r_color_highlight}"
+local s1ck3r_c_token_vinormal="${s1ck3r_c_token_vinormal:-$s1ck3r_color_alternative}"
 local s1ck3r_c_token_t="${s1ck3r_c_token_t:-$s1ck3r_color_dim}"
 local s1ck3r_c_dir="${s1ck3r_c_dir:-$s1ck3r_color_fg}"
 local s1ck3r_c_dir_sep="${s1ck3r_c_dir_sep:-$s1ck3r_color_dim}"
@@ -198,7 +200,8 @@ _s1ck3r_prompt()
     # Set the prompt tokens based on VI mode > root access > normal.
     local token
     case "${1}" in
-        (vicmd)      token="${s1ck3r_prompt_token_vi}" ;; 
+        (vicmd)      
+                     token="%F{${s1ck3r_c_token_vinormal}}${s1ck3r_prompt_token_vi}%f" ;; 
         (*)          token="%(!.${s1ck3r_prompt_token_root}.${s1ck3r_prompt_token})"  ;;
     esac
     
@@ -206,7 +209,7 @@ _s1ck3r_prompt()
     echo -n '$(s1ck3r_prompt_prefix)'
 
     # Set the correct color based on current errors > background jobs > normal color.
-    echo -n "%(1j.%F{${s1ck3r_c_token_active}}.%F{${s1ck3r_c_token}})%(?..%F{${s1ck3r_c_error}})"
+    echo -n "%(1j.%F{${s1ck3r_c_token_jobs}}.%F{${s1ck3r_c_token}})%(?..%F{${s1ck3r_c_error}})"
 
     # Output the correct token.
     echo -n "${token}%f "

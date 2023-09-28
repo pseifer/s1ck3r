@@ -67,7 +67,7 @@ See below for how to add this information using any of the s1ck3r custom prefixe
 
 More generally, s1ck3r can be customized by simply initializing any of the following variables with custom values *before* sourcing `s1ck3r.zsh`.
 There are three sections: First, the prompt symbols can be changed.
-This is required if your setup does not support the default symbols used, or if you want to use something else.
+This is required if your setup does not support the default symbols used -- or if you want to use something else.
 Below is an ASCII only example configuration.
 
 ```sh
@@ -77,13 +77,9 @@ local s1ck3r_prompt_token_vi="-"                           # prompt in NORMAL mo
 local s1ck3r_prompt_token_root="#"                         # elevated prompt (root)
 local s1ck3r_prompt_token_t="-"                            # transient prompt
 local s1ck3r_prompt_token_continue="  >"                   # continuation (i.e., multiline)
-
-# Symbols (directories):
-local s1ck3r_dir_sep="${s1ck3r_dir_sep:-/}"                # separator in path
-local s1ck3r_dir_home="${s1ck3r_dir_home:-~}"              # abbreviation for home
 ```
 
-Secondly, the easy mode color configuration can be used to change the four colors for "highlights" (default green), "dim" elements (default light black), "errors" (default red) as well as the standard foreground color (default foreground).
+Secondly, the easy mode color configuration can be used to change the five colors for "highlights" (default green), "alternative" (default blue), "dim" elements (default light black), "errors" (default red) as well as the standard foreground color (default foreground).
 
 ```sh
 # Easy mode:
@@ -94,7 +90,7 @@ local s1ck3r_color_error="1"                               # prompt with errors,
 local s1ck3r_color_fg="foreground"                         # path elements in right prompt
 ```
 
-It is also possible to change *how* these four colors are used, by changing any of the variables given below.
+It is also possible to change *how* these five colors are used, by changing any of the variables given below.
 It should be rather obvious what these colors are used for; the suffix `_t` means "transient" and is used for anything related to the non-active prompt.
 (Of course, these variables can be set to *any* color name, id or hex triplet supported by your setup).
 

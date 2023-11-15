@@ -81,7 +81,7 @@ function _s1ck3r_short_path
 
     # First initialize with ~, ~user, or /
 
-    if [[ "${paths[1]}" = 'home' ]]; then
+    if [[ "${paths[1]}" = 'home' || "${paths[1]}" = 'Users' ]]; then
         if [[ "${paths[2]}" = "${USER}" ]]; then
             # Current user home directory.
             # Add unique prefix to short path.
